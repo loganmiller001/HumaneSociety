@@ -60,7 +60,19 @@ namespace HumaneSociety
 
         public static void AddAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            Animal newAnimal = new Animal();
+    
+            db.Animals.InsertOnSubmit(newAnimal);
+
+            db.SubmitChanges();
+
+            Animal insertedAnimal = db.Animals.First();
+            Console.WriteLine("Name: {0}, Species{1}, Age{2}, Demeanor{3}, Kid Friendly{4}, Pet Friendly{5}," +
+                 "Weight{6}, DietPlan{7}", insertedAnimal.Name, insertedAnimal.Age, insertedAnimal.Demeanor, insertedAnimal.KidFriendly, insertedAnimal.PetFriendly, 
+                 insertedAnimal.Weight, insertedAnimal.DietPlan);
+            Console.WriteLine("New Animal inserted.");
+            Console.ReadKey();
+
         }
 
         public static Employee EmployeeLogin(string userName, string password)
