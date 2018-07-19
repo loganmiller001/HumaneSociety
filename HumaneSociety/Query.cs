@@ -131,8 +131,8 @@ namespace HumaneSociety
 
         public static object RetrieveClients()
         {
-
-            throw new NotImplementedException();
+            var client = from clients in db.Clients select clients;
+            return client;
         }
 
         public static USState GetStates(string state, string abbrev)
