@@ -9,10 +9,7 @@ namespace HumaneSociety
     public static class Query
     {
         public static HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-<<<<<<< HEAD
 
-=======
->>>>>>> 61e265c3cd4fac3b5e9afd1d01fa3a6fdfc15c38
         public static Adoption GetPendingAdoptions()
         {
             throw new NotImplementedException();
@@ -111,8 +108,8 @@ namespace HumaneSociety
 
         public static object RetrieveClients()
         {
-
-            throw new NotImplementedException();
+            var client = from clients in db.Clients select clients;
+            return client;
         }
 
         public static USState GetStates(string state, string abbrev)
