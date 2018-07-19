@@ -10,7 +10,7 @@ namespace HumaneSociety
     {
         public static HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
-        public static Adoption GetPendingAdoptions()
+        public static void GetPendingAdoptions()
         {
             throw new NotImplementedException();
         }
@@ -109,7 +109,7 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static object GetUserAdoptionStatus(Client client)
+        public static void GetUserAdoptionStatus(Client client)
         {
             throw new NotImplementedException();
         }
@@ -129,15 +129,15 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static object RetrieveClients()
+        public static List<Client> RetrieveClients()
         {
-            var client = from clients in db.Clients select clients;
+            var client = db.Clients.ToList();
             return client;
         }
 
-        public static USState GetStates(string state, string abbrev)
+        public static List<USState> GetStates(string state, string abbrev)
         {
-            var statesId = (from s in db.USStates where s.Name.Equals(state) && s.Abbreviation.Equals(abbrev) select s).First();
+            var statesId = db.USStates.ToList();
             return statesId;
                           
         }
