@@ -118,7 +118,7 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        internal static void updateClient(Client client)
+        internal static void UpdateClient(Client client)
         {
             throw new NotImplementedException();
         }

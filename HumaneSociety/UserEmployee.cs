@@ -64,9 +64,9 @@ namespace HumaneSociety
             List<string> adoptionInfo = new List<string>();
             int counter = 1;
             var adoptions = Query.GetPendingAdoptions().ToList();
-            if(adoptions.Count > 0)
+            if(adoptions.Count() > 0)
             {
-                foreach(Adoption adoption in adoptions)
+                foreach(Adoption adoption in adoptions())
                 {
                     adoptionInfo.Add($"{counter}. {adoption.Client.FirstName} {adoption.Client.LastName}, {adoption.Animal.Name} {adoption.Animal.Species}");
                     counter++;
