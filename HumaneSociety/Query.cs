@@ -10,7 +10,7 @@ namespace HumaneSociety
     {
         public static HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
-        public static Adoption GetPendingAdoptions()
+        public static void GetPendingAdoptions()
         {
             throw new NotImplementedException();
         }
