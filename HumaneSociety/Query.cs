@@ -89,13 +89,7 @@ namespace HumaneSociety
 
         public static void AddUsernameAndPassword(Employee employee)
         {
-            Employee usernameAndPassword =  new Employee();
-
-            db.Employees.InsertOnSubmit(usernameAndPassword);
-            Employee insertedData = db.Employees.First();
-            Console.WriteLine("UserName: {0}, Password{1}", insertedData.UserName, insertedData.Password);
-            Console.WriteLine("New username and password inserted.");
-            Console.ReadKey();
+            throw new NotImplementedException();
         }
 
         public static bool CheckEmployeeUserNameExist(string username)
@@ -109,7 +103,7 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static object GetUserAdoptionStatus(Client client)
+        public static void GetUserAdoptionStatus(Client client)
         {
             throw new NotImplementedException();
         }
@@ -129,32 +123,22 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static object RetrieveClients()
+        public static List<Client> RetrieveClients()
         {
-            var client = from clients in db.Clients select clients;
+            var client = db.Clients.ToList();
             return client;
         }
 
-        public static USState GetStates(string state, string abbrev)
+        public static List<USState> GetStates(string state, string abbrev)
         {
-            var statesId = (from s in db.USStates where s.Name.Equals(state) && s.Abbreviation.Equals(abbrev) select s).First();
+            var statesId = db.USStates.ToList();
             return statesId;
                           
         }
 
         public static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
         {
-            Client newClient = new Client();
-
-            db.Clients.InsertOnSubmit(newClient);
-
-            db.SubmitChanges();
-
-            Client insertedClient = db.Clients.First();
-            Console.WriteLine("First Name: {0}, Last Name: {1}, username: {2}, password{3}, email: {4}, address: {5}, zipcode: {6}, state: {7}", insertedClient.FirstName, insertedClient.LastName, 
-                insertedClient.UserName, insertedClient.Password, insertedClient.Email, insertedClient.Address);
-            Console.WriteLine("New Client inserted.");
-            Console.ReadKey();
+            throw new NotImplementedException();
         }
 
         public static void UpdateClient(Client client)
