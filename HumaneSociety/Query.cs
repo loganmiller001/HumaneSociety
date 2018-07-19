@@ -115,7 +115,7 @@ namespace HumaneSociety
 
         public static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
         {
-            throw new NotImplementedException();
+            Client client = new Client();
         }
 
         public static void UpdateClient(Client client)
