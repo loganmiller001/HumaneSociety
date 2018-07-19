@@ -1,0 +1,41 @@
+//Inserted 5 Species
+INSERT INTO Species VALUES ('Labador');
+INSERT INTO Species VALUES ('Tabby');
+INSERT INTO Species VALUES ('Boa');
+INSERT INTO Species VALUES ('Black Footed Ferrit');
+INSERT INTO Species VALUES ('Box Turtle');
+
+//Inserted 5 employees
+INSERT INTO Employees VALUES ('Robert', 'Marley', 'bobert', '12345', 0001, 'bobertM@live.com' );
+INSERT INTO Employees VALUES ('Kim', 'Lang', 'Klang', '54321', 0002, 'LangK@live.com' );
+INSERT INTO Employees VALUES ('Logan', 'Miller', 'logmil13', 'loganmiller001', 0003, 'loganmiller001@gmail.com' );
+INSERT INTO Employees VALUES ('Peter', 'Li', 'PLi', '15234', 0004, 'peterLI@live.com' );
+INSERT INTO Employees VALUES ('Ryan', 'Miller', 'Reggie23', 'twitchstreamer', 0005, 'reggie23@live.com' );
+
+//Inserted 5 dietplans
+INSERT INTO DietPlans VALUES('Generic Dog Food', 'Dog Food', 5);
+INSERT INTO DietPlans VALUES('Generic Dry Food', 'Cat Food', 3);
+INSERT INTO DietPlans VALUES('Frozen Mice', 'Mice', 1);
+INSERT INTO DietPlans VALUES('Pellet Farmer', 'Ferret Food', 4);
+INSERT INTO DietPlans VALUES('Best Reptile Food', 'Turtle Food', 1.5);
+
+//Inserted 5 animals 
+INSERT INTO Animals VALUES ('Frigg', 1, 75, 4, 1,'Happy', 0, 1, 'Female', 'Not Adopted', 1);
+INSERT INTO Animals VALUES ('Heimdallr', 2, 7, 2, 2, 'Angry', 1, 1, 'Male', 'Adopted', 2);
+INSERT INTO Animals VALUES ('Odin', 3, 5, 5, 3, 'Wise', 0, 0, 'Male', 'Adopted', 3);
+INSERT INTO Animals VALUES ('Freya', 4, 6, 1, 4, 'Melancholy', 1, 0, 'Female', 'Not Adopted', 4);
+INSERT INTO Animals VALUES ('Baldr', 5, 10, 2, 5, 'Calm', 1, 1, 'Male', 'Not Adopted', 5);
+
+//Inserted 5 shots
+INSERT INTO Shots VALUES ('Cold');
+INSERT INTO Shots VALUES ('Flu');
+INSERT INTO Shots VALUES ('Mad Cow Disease');
+INSERT INTO Shots VALUES ('Rabies');
+INSERT INTO Shots VALUES ('Scabies');
+
+//Inserted 5 Rooms
+INSERT INTO Rooms VALUES(6);
+INSERT INTO Rooms VALUES(2);
+INSERT INTO Rooms VALUES(3);
+INSERT INTO Rooms VALUES(4);
+INSERT INTO Rooms VALUES(5);
