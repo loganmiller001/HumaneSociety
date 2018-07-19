@@ -8,6 +8,7 @@ namespace HumaneSociety
 {
     public static class Query
     {
+        public static HumaneSocietyDataContext db = new HumaneSocietyDataContext();
         public static Adoption GetPendingAdoptions()
         {
             throw new NotImplementedException();
@@ -38,14 +39,15 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static Species GetSpecies()
+        public static Species GetSpecies(string species)
         {
             throw new NotImplementedException();
         }
 
         public static Client GetClient(string userName, string password)
         {
-            throw new NotImplementedException();
+            var client = (from c in db.Clients where c.UserName.Equals(userName) && c.Password.Equals(password) select c).First();
+            return client;
         }
 
         public static DietPlan GetDietPlan()
@@ -105,6 +107,7 @@ namespace HumaneSociety
 
         public static object RetrieveClients()
         {
+
             throw new NotImplementedException();
         }
 
