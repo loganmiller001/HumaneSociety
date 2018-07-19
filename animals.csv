@@ -1,3 +1,7 @@
-1001, "Murdock", null, 15, 2, null, null, "skittish", 1, 0, null, "adopted", null
-1002, "Loki", null, 18, 3, null, null, "cuddly", 1, 1, null, "adopted", null
-1003, "Rowdy", null, 20, 8, null, null, "deceased", 1, 1, null, "not adopted", null
+"Tyr", 1, 15, 2, 1, "skittish", 1, 0, "Male", "adopted", 1
+"Loki", 2, 18, 3, 2, "cuddly", 1, 1, "Male", "adopted", 2
+"Sif", 3, 20, 8, 3"happy", 1, 1, "Female", "not adopted", 3
+"Iounn", 4, 20, 8, 4, "melancholy", 0, 0, "Female", "not adopted", 4
+"Ullr", 5, 20, 8, 5, "angry", 0, 1, "Male", "not adopted", 5
+
+
