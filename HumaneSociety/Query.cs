@@ -42,7 +42,8 @@ namespace HumaneSociety
 
         public static Species GetSpecies(string species)
         {
-            throw new NotImplementedException();
+            var foundSpecies = (from s in db.Species where s.Name.Equals(species) select s).Single();
+            return foundSpecies;
         }
 
         public static Client GetClient(string userName, string password)
@@ -53,7 +54,8 @@ namespace HumaneSociety
 
         public static DietPlan GetDietPlan()
         {
-            throw new NotImplementedException();
+            DietPlan diet = new DietPlan();
+            return diet;
         }
 
         public static void AddAnimal(Animal animal)
@@ -63,12 +65,14 @@ namespace HumaneSociety
 
         public static Employee EmployeeLogin(string userName, string password)
         {
-            throw new NotImplementedException();
+            var acceptedLogin = (from l in db.Employees where l.UserName.Equals(userName) && l.Password.Equals(password) select l).First();
+            return acceptedLogin;
         }
 
         public static Employee RetrieveEmployeeUser(string email, int employeeNumber)
         {
-            throw new NotImplementedException();
+            var foundUserInfo = (from u in db.Employees where u.Email.Equals(email) && u.EmployeeNumber.Equals(employeeNumber) select u).First();
+            return foundUserInfo;
         }
 
         public static void AddUsernameAndPassword(Employee employee)
@@ -78,7 +82,8 @@ namespace HumaneSociety
 
         public static bool CheckEmployeeUserNameExist(string username)
         {
-            throw new NotImplementedException();
+            var foundUserName = (from u in db.Employees where u.UserName.Equals(username) select u).First();
+            return true;
         }
 
         public static Room GetRoom(int animalId)
@@ -121,7 +126,7 @@ namespace HumaneSociety
 
         public static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
         {
-            var clients = from c in db.Clients where c.FirstName.Equals(firstName) && c.LastName.Equals(lastName) &&
+            throw new NotImplementedException();
         }
 
         public static void UpdateClient(Client client)
