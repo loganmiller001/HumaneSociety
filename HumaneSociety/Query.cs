@@ -12,7 +12,7 @@ namespace HumaneSociety
 
         public static void GetPendingAdoptions()
         {
-            throw new NotImplementedException();
+            var adoption = (from a in db.Adoptions where a.ApprovalStatus.Equals(null) select a);
         }
 
         public static void UpdateAdoption(bool v, Adoption adoption)
@@ -90,7 +90,13 @@ namespace HumaneSociety
 
         public static void AddUsernameAndPassword(Employee employee)
         {
-            throw new NotImplementedException();
+            Employee usernameAndPassword = new Employee();
+
+            db.Employees.InsertOnSubmit(usernameAndPassword);
+            Employee insertedData = db.Employees.First();
+            Console.WriteLine("UserName: {0}, Password{1}", insertedData.UserName, insertedData.Password);
+            Console.WriteLine("New username and password inserted.");
+            Console.ReadKey();
         }
 
         public static bool CheckEmployeeUserNameExist(string username)
@@ -106,7 +112,8 @@ namespace HumaneSociety
 
         public static void GetUserAdoptionStatus(Client client)
         {
-            throw new NotImplementedException();
+            var clientID = client.ClientId;
+            var clientInfo = from a in db.Adoptions where a.ClientId.Equals(clientID) select a.ApprovalStatus;
         }
 
         public static object GetAnimalByID(int iD)
