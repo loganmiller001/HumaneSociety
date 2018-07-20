@@ -12,7 +12,7 @@ namespace HumaneSociety
 
         public static void GetPendingAdoptions()
         {
-            throw new NotImplementedException();
+            var adoption = (from a in db.Adoptions where a.ApprovalStatus.Equals(null) select a);
         }
 
         public static void UpdateAdoption(bool v, Adoption adoption)
@@ -89,7 +89,13 @@ namespace HumaneSociety
 
         public static void AddUsernameAndPassword(Employee employee)
         {
-            throw new NotImplementedException();
+            Employee usernameAndPassword = new Employee();
+
+            db.Employees.InsertOnSubmit(usernameAndPassword);
+            Employee insertedData = db.Employees.First();
+            Console.WriteLine("UserName: {0}, Password{1}", insertedData.UserName, insertedData.Password);
+            Console.WriteLine("New username and password inserted.");
+            Console.ReadKey();
         }
 
         public static bool CheckEmployeeUserNameExist(string username)
@@ -105,7 +111,8 @@ namespace HumaneSociety
 
         public static void GetUserAdoptionStatus(Client client)
         {
-            throw new NotImplementedException();
+            var clientID = client.ClientId;
+            var clientInfo = from a in db.Adoptions where a.ClientId.Equals(clientID) select a.ApprovalStatus;
         }
 
         public static object GetAnimalByID(int iD)
@@ -138,7 +145,17 @@ namespace HumaneSociety
 
         public static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
         {
-            throw new NotImplementedException();
+            Client newClient = new Client();
+
+            db.Clients.InsertOnSubmit(newClient);
+
+            db.SubmitChanges();
+
+            Client insertedClient = db.Clients.First();
+            Console.WriteLine("First Name: {0}, Last Name: {1}, username: {2}, password{3}, email: {4}, address: {5}, zipcode: {6}, state: {7}", insertedClient.FirstName, insertedClient.LastName,
+                insertedClient.UserName, insertedClient.Password, insertedClient.Email, insertedClient.Address);
+            Console.WriteLine("New Client inserted.");
+            Console.ReadKey();
         }
 
         public static void UpdateClient(Client client)
