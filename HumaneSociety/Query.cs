@@ -9,6 +9,7 @@ namespace HumaneSociety
     public static class Query
     {
         public static HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+        public delegate void RunCrudMethods(Employee employee);
 
         public static IQueryable<Adoption> GetPendingAdoptions()
         {
@@ -51,32 +52,32 @@ namespace HumaneSociety
                     newAnimal.Name = update.Value;
                     db.SubmitChanges();
                 }
-                if (update.Key == 2)
+                else if (update.Key == 2)
                 {
                     newAnimal.Species.Name = update.Value;
                     db.SubmitChanges();
                 }
-                if (update.Key == 3)
+                else if (update.Key == 3)
                 {
                     newAnimal.Age = Convert.ToInt32(update.Value);
                     db.SubmitChanges();
                 }
-                if (update.Key == 4)
+                else if (update.Key == 4)
                 {
                     animal.Demeanor = update.Value;
                     db.SubmitChanges();
                 }
-                if (update.Key == 5)
+                else if (update.Key == 5)
                 {
                     animal.KidFriendly = Convert.ToBoolean(update.Value);
                     db.SubmitChanges();
                 }
-                if (update.Key == 6)
+                else if (update.Key == 6)
                 {
                     animal.PetFriendly = Convert.ToBoolean(update.Value);
                     db.SubmitChanges();
                 }
-                if (update.Key == 7)
+                else if (update.Key == 7)
                 {
                     animal.Weight = Convert.ToInt32(update.Value);
                     db.SubmitChanges();
@@ -178,9 +179,64 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
+        public static void CrudCreateEmployee(Employee employee)
+        {
+            Employee newEmployee = new Employee();
+
+            db.Employees.InsertOnSubmit(newEmployee);
+            db.SubmitChanges();
+        }
+
+        public static void CrudReadEmployee(Employee employee)
+        {
+            var findEmployee = from e in db.Employees where e.EmployeeNumber == employee.EmployeeNumber select e;
+            Console.WriteLine("Employee that was found: ", findEmployee);
+        }
+
+        public static void CrudUpdateEmployee(Employee employee)
+        {
+            var myQuery = from e in db.Employees where e.EmployeeId == employee.EmployeeId select e;
+            Employee upDatedEmployee = myQuery.First();
+            upDatedEmployee.FirstName = employee.FirstName;
+            upDatedEmployee.LastName = employee.LastName;
+            upDatedEmployee.EmployeeNumber = employee.EmployeeNumber;
+            upDatedEmployee.Email = employee.Email;
+
+            db.SubmitChanges();
+        }
+
+        public static void CrudDeleteEmployee(Employee employee)
+        {
+            db.GetTable<Employee>().DeleteOnSubmit(employee);
+            db.SubmitChanges();
+        }
+
         public static void RunEmployeeQueries(Employee employee, string v)
         {
-            throw new NotImplementedException();
+            switch (v)
+            {
+                case "Create":
+                    RunCrudMethods method1 = new RunCrudMethods(CrudCreateEmployee);
+                    CrudCreateEmployee(employee);
+                    break;
+                case "Read":
+                    RunCrudMethods method2 = new RunCrudMethods(CrudReadEmployee);
+                    CrudReadEmployee(employee);
+                    break;
+                case "Update":
+                    RunCrudMethods method3 = new RunCrudMethods(CrudUpdateEmployee);
+                    CrudUpdateEmployee(employee);
+                    break;
+                case "Delete":
+                    RunCrudMethods method4 = new RunCrudMethods(CrudDeleteEmployee);
+                    CrudDeleteEmployee(employee);
+                    break;
+
+                default:
+                    Console.WriteLine("Wrong input, please choose again.");
+                    RunEmployeeQueries(employee, v);
+                    break;
+            }
         }
 
         public static List<Client> RetrieveClients()
