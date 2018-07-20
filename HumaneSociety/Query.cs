@@ -39,8 +39,8 @@ namespace HumaneSociety
         public static void EnterUpdate(Animal animal, Dictionary<int, string> updates)
         {
             var animalList = db.Animals.Select(a => new { a.AnimalId, a.Name}).ToDictionary(a => a.AnimalId, a => a.Name);
-           
 
+            db.SubmitChanges();
 
 
 
