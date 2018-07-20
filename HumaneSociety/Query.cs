@@ -30,12 +30,20 @@ namespace HumaneSociety
             var myQuery = from shot in db.GetTable<Shot>()
                           where shot.Name.Equals(v)
                           select shot;
+            Shot updateShot = myQuery.First();
+            updateShot.Name = (updateShot.Name.Single().ToString());
+            db.SubmitChanges();
+
         }
 
-        public static void EnterUpdate(Animal animalList, Dictionary<int, string> updates)
+        public static void EnterUpdate(Animal animal, Dictionary<int, string> updates)
         {
-            Dictionary<int, string> animalList = new Dictionary<int, string>();
-            db.Animals.InsertOnSubmit(animalList);
+            var animalList = db.Animals.Select(a => new { a.AnimalId, a.Name}).ToDictionary(a => a.AnimalId, a => a.Name);
+           
+
+
+
+
 
         }
 
