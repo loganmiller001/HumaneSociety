@@ -33,13 +33,50 @@ namespace HumaneSociety
 
         public static void EnterUpdate(Animal animal, Dictionary<int, string> updates)
         {
-            var animalList = db.Animals.Select(a => new { a.AnimalId, a.Name}).ToDictionary(a => a.AnimalId, a => a.Name);
+            var newAnimal = db.Animals.Where(a => a.AnimalId.Equals(animal.AnimalId)).SingleOrDefault();
 
-            db.SubmitChanges();
+            foreach (var update in updates)
+            {
+                if (update.Key == 1)
+                {
+                    newAnimal.Name = update.Value;
+                    db.SubmitChanges();
+                }
+                if (update.Key == 2)
+                {
+                    newAnimal.Species.Name = update.Value;
+                    db.SubmitChanges();
+                }
+                if (update.Key == 3)
+                {
+                    newAnimal.Age = Convert.ToInt32(update.Value);
+                    db.SubmitChanges();
+                }
+                if (update.Key == 4)
+                {
+                    animal.Demeanor = update.Value;
+                    db.SubmitChanges();
+                }
+                if (update.Key == 5)
+                {
+                    animal.KidFriendly = Convert.ToBoolean(update.Value);
+                    db.SubmitChanges();
+                }
+                if (update.Key == 6)
+                {
+                    animal.PetFriendly = Convert.ToBoolean(update.Value);
+                    db.SubmitChanges();
+                }
+                if (update.Key == 7)
+                {
+                    animal.Weight = Convert.ToInt32(update.Value);
+                    db.SubmitChanges();
+                }
 
 
 
 
+            }
 
         }
 
