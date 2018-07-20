@@ -58,4 +58,21 @@ WHERE RoomId = 5;
 UPDATE Rooms
 SET RoomName = 'Room 5'
 WHERE RoomId = 6;
- 
+
+//Renamed species names
+UPDATE Species
+SET Name = 'Dog'
+WHERE SpeciesId = 1;
+
+UPDATE Species
+SET Name = 'Cat'
+WHERE SpeciesId = 2;
+UPDATE Species
+SET Name = 'Snake'
+WHERE SpeciesId = 3;
+UPDATE Species
+SET Name = 'Ferret'
+WHERE SpeciesId = 4;
+UPDATE Species
+SET Name = 'Turtle'
+WHERE SpeciesId = 5;
