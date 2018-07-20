@@ -37,7 +37,8 @@ namespace HumaneSociety
 
         public static void RemoveAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            db.GetTable<Animal>().DeleteOnSubmit(animal);
+            db.SubmitChanges();
         }
 
         public static Species GetSpecies(string species)
