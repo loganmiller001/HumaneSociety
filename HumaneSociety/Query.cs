@@ -32,7 +32,10 @@ namespace HumaneSociety
 
         public static void EnterUpdate(Animal animal, Dictionary<int, string> updates)
         {
-            throw new NotImplementedException();
+            Dictionary<int, string> animalList = new Dictionary<int, string>();
+
+            db.Animals.InsertOnSubmit(animal);
+
         }
 
         public static void RemoveAnimal(Animal animal)
@@ -67,13 +70,6 @@ namespace HumaneSociety
 
             db.SubmitChanges();
 
-            Animal insertedAnimal = db.Animals.First();
-            Console.WriteLine("Name: {0}, Species{1}, Age{2}, Demeanor{3}, Kid Friendly{4}, Pet Friendly{5}," +
-                 "Weight{6}, DietPlan{7}", insertedAnimal.Name, insertedAnimal.Age, insertedAnimal.Demeanor, insertedAnimal.KidFriendly, insertedAnimal.PetFriendly, 
-                 insertedAnimal.Weight, insertedAnimal.DietPlan);
-            Console.WriteLine("New Animal inserted.");
-            Console.ReadKey();
-
         }
 
         public static Employee EmployeeLogin(string userName, string password)
@@ -93,10 +89,8 @@ namespace HumaneSociety
             Employee usernameAndPassword = new Employee();
 
             db.Employees.InsertOnSubmit(usernameAndPassword);
-            Employee insertedData = db.Employees.First();
-            Console.WriteLine("UserName: {0}, Password{1}", insertedData.UserName, insertedData.Password);
-            Console.WriteLine("New username and password inserted.");
-            Console.ReadKey();
+
+            db.SubmitChanges();
         }
 
         public static bool CheckEmployeeUserNameExist(string username)
@@ -151,12 +145,6 @@ namespace HumaneSociety
             db.Clients.InsertOnSubmit(client);
             db.SubmitChanges();
 
-            Client insertedCLient = db.Clients.First();
-            Console.WriteLine("FistName {}, LastName{}, username{}, password{}, email{}, address{}, zipcode{}, state{}", 
-                insertedCLient.FirstName, insertedCLient.LastName, insertedCLient.UserName, insertedCLient.Password,
-                insertedCLient.Email, insertedCLient.Address, insertedCLient.Address.Zipcode, insertedCLient.Address.USState);
-            Console.WriteLine("New client inserted");
-            Console.ReadKey();
             
         }
 
