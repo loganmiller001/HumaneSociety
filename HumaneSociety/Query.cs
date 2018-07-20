@@ -162,7 +162,11 @@ namespace HumaneSociety
 
         public static object GetAnimalByID(int iD)
         {
-            throw new NotImplementedException();
+
+            var animalId = from a in db.Animals
+                           where a.AnimalId == iD
+                           select a;
+            return animalId;
         }
 
         public static void Adopt(object animal, Client client)
