@@ -139,12 +139,35 @@ namespace HumaneSociety
 
         public static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
         {
-            throw new NotImplementedException();
+            Client client = new Client();
+
+            db.Clients.InsertOnSubmit(client);
+            db.SubmitChanges();
+
+            Client insertedCLient = db.Clients.First();
+            Console.WriteLine("FistName {}, LastName{}, username{}, password{}, email{}, address{}, zipcode{}, state{}", 
+                insertedCLient.FirstName, insertedCLient.LastName, insertedCLient.UserName, insertedCLient.Password,
+                insertedCLient.Email, insertedCLient.Address, insertedCLient.Address.Zipcode, insertedCLient.Address.USState);
+            Console.WriteLine("New client inserted");
+            Console.ReadKey();
+            
         }
 
         public static void UpdateClient(Client client)
         {
-            throw new NotImplementedException();
+            var myQuery = from clients in db.GetTable<Client>()
+                          where clients.ClientId == (clients.ClientId)
+                          select clients;
+            Client updateClient = myQuery.First();
+            updateClient.ClientId = (updateClient.UserName.Single());
+            updateClient.FirstName = (updateClient.FirstName);
+            updateClient.LastName = (updateClient.LastName.First().ToString());
+            updateClient.UserName = (updateClient.UserName.First().ToString());
+            updateClient.Email = (updateClient.Email.First().ToString());
+            updateClient.Address = (updateClient.Address);
+            updateClient.Address.Zipcode = (updateClient.Address.Zipcode);
+            updateClient.Address.USState = (updateClient.Address.USState);
+            db.SubmitChanges();
         }
 
         public static void UpdateUsername(Client client)
@@ -170,10 +193,10 @@ namespace HumaneSociety
         public static void UpdateAddress(Client client)
         {
             var myQuery = from clients in db.GetTable<Client>()
-                          where clients.Address == (clients.Address)
+                          where clients.AddressId == (clients.AddressId)
                           select clients;
             Client updateClient = myQuery.First();
-            updateClient.Address = (updateClient.Address);
+            updateClient.AddressId = (updateClient.AddressId);
             db.SubmitChanges();
         }
 
