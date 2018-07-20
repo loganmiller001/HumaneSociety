@@ -18,7 +18,11 @@ namespace HumaneSociety
 
         public static void UpdateAdoption(bool v, Adoption adoption)
         {
-            throw new NotImplementedException();
+            if (v == true) {
+                adoption.ApprovalStatus = "Approved";
+            } else if (v == false) {
+                adoption.ApprovalStatus = "Not approved";
+            }
         }
 
         public static IQueryable<AnimalShot> GetShots(Animal animal)
@@ -144,7 +148,8 @@ namespace HumaneSociety
 
         public static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            var room = (from a in db.Rooms where a.AnimalId.Equals(animalId) select a).First();
+            return room;
         }
         
         public static IQueryable<Adoption> GetUserAdoptionStatus(Client client)
