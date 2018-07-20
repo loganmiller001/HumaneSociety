@@ -39,3 +39,23 @@ INSERT INTO Rooms VALUES(2);
 INSERT INTO Rooms VALUES(3);
 INSERT INTO Rooms VALUES(4);
 INSERT INTO Rooms VALUES(5);
+
+//Added new column to Room table
+ALTER TABLE Rooms ADD RoomName VARCHAR(50);
+UPDATE Rooms
+SET RoomName = 'Room 1'
+WHERE RoomId = 2;
+
+UPDATE Rooms
+SET RoomName = 'Room 2'
+WHERE RoomId = 3;
+UPDATE Rooms
+SET RoomName = 'Room 3'
+WHERE RoomId = 4;
+UPDATE Rooms
+SET RoomName = 'Room 4'
+WHERE RoomId = 5;
+UPDATE Rooms
+SET RoomName = 'Room 5'
+WHERE RoomId = 6;
+ 
