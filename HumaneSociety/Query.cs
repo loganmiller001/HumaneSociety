@@ -27,14 +27,23 @@ namespace HumaneSociety
 
         public static void UpdateShot(string v, Animal animal)
         {
-            throw new NotImplementedException();
+            var myQuery = from shot in db.GetTable<Shot>()
+                          where shot.Name.Equals(v)
+                          select shot;
+            Shot updateShot = myQuery.First();
+            updateShot.Name = (updateShot.Name.Single().ToString());
+            db.SubmitChanges();
+
         }
 
         public static void EnterUpdate(Animal animal, Dictionary<int, string> updates)
         {
-            Dictionary<int, string> animalList = new Dictionary<int, string>();
+            var animalList = db.Animals.Select(a => new { a.AnimalId, a.Name}).ToDictionary(a => a.AnimalId, a => a.Name);
+           
 
-            db.Animals.InsertOnSubmit(animal);
+
+
+
 
         }
 
@@ -151,7 +160,7 @@ namespace HumaneSociety
         public static void UpdateClient(Client client)
         {
             var myQuery = from clients in db.GetTable<Client>()
-                          where clients.ClientId == (clients.ClientId)
+                          where clients.ClientId.Equals(client)
                           select clients;
             Client updateClient = myQuery.First();
             updateClient.ClientId = (updateClient.UserName.Single());
@@ -168,7 +177,7 @@ namespace HumaneSociety
         public static void UpdateUsername(Client client)
         {
             var myQuery = from clients in db.GetTable<Client>()
-                          where clients.UserName == (clients.UserName.Single().ToString())
+                          where clients.UserName.Equals(client)
                           select clients;
             Client updateClient = myQuery.First();
             updateClient.UserName = (updateClient.UserName.Single().ToString());
@@ -188,7 +197,7 @@ namespace HumaneSociety
         public static void UpdateAddress(Client client)
         {
             var myQuery = from clients in db.GetTable<Client>()
-                          where clients.AddressId == (clients.AddressId)
+                          where clients.AddressId.Equals(client)
                           select clients;
             Client updateClient = myQuery.First();
             updateClient.AddressId = (updateClient.AddressId);
@@ -198,7 +207,7 @@ namespace HumaneSociety
         public static void UpdateFirstName(Client client)
         {
             var myQuery = from clients in db.GetTable<Client>()
-                          where clients.FirstName == (clients.FirstName.Single().ToString())
+                          where clients.FirstName.Equals(client)
                           select clients;
             Client updateClient = myQuery.First();
             updateClient.FirstName = (updateClient.FirstName.Single().ToString());
@@ -208,7 +217,7 @@ namespace HumaneSociety
         public static void UpdateLastName(Client client)
         {
             var myQuery = from clients in db.GetTable<Client>()
-                          where clients.LastName == (clients.LastName.Single().ToString())
+                          where clients.LastName.Equals(client)
                           select clients;
             Client updateClient = myQuery.First();
             updateClient.LastName = (updateClient.LastName.Single().ToString());
