@@ -40,7 +40,6 @@ namespace HumaneSociety
 
 
 
-            db.Animals.InsertOnSubmit(animal);
 
         }
 
