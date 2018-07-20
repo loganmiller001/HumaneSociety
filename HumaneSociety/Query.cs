@@ -33,7 +33,11 @@ namespace HumaneSociety
 
         public static void UpdateShot(string v, Animal animal)
         {
-            throw new NotImplementedException();
+            var currentShots = from a in db.AnimalShots where a.Equals(animal) select a;
+            foreach (AnimalShot animalShot in currentShots)
+            {
+                animalShot.DateReceived = DateTime.Today;
+            }
         }
 
         public static void EnterUpdate(Animal animal, Dictionary<int, string> updates)
