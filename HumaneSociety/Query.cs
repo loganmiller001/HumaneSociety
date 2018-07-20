@@ -149,27 +149,52 @@ namespace HumaneSociety
 
         public static void UpdateUsername(Client client)
         {
-            throw new NotImplementedException();
+            var myQuery = from clients in db.GetTable<Client>()
+                          where clients.UserName == (clients.UserName.Single().ToString())
+                          select clients;
+            Client updateClient = myQuery.First();
+            updateClient.UserName = (updateClient.UserName.Single().ToString());
+            db.SubmitChanges();
         }
 
         public static void UpdateEmail(Client client)
         {
-            throw new NotImplementedException();
+            var myQuery = from clients in db.GetTable<Client>()
+                          where clients.Email == (clients.Email.Single().ToString())
+                          select clients;
+            Client updateClient = myQuery.First();
+            updateClient.Email = (updateClient.Email.Single().ToString());
+            db.SubmitChanges();
         }
 
         public static void UpdateAddress(Client client)
         {
-            throw new NotImplementedException();
+            var myQuery = from clients in db.GetTable<Client>()
+                          where clients.Address == (clients.Address)
+                          select clients;
+            Client updateClient = myQuery.First();
+            updateClient.Address = (updateClient.Address);
+            db.SubmitChanges();
         }
 
         public static void UpdateFirstName(Client client)
         {
-            throw new NotImplementedException();
+            var myQuery = from clients in db.GetTable<Client>()
+                          where clients.FirstName == (clients.FirstName.Single().ToString())
+                          select clients;
+            Client updateClient = myQuery.First();
+            updateClient.FirstName = (updateClient.FirstName.Single().ToString());
+            db.SubmitChanges();
         }
 
         public static void UpdateLastName(Client client)
         {
-            throw new NotImplementedException();
+            var myQuery = from clients in db.GetTable<Client>()
+                          where clients.LastName == (clients.LastName.Single().ToString())
+                          select clients;
+            Client updateClient = myQuery.First();
+            updateClient.LastName = (updateClient.LastName.Single().ToString());
+            db.SubmitChanges();
         }
     }
 }
