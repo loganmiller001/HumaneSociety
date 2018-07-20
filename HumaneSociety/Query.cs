@@ -21,9 +21,10 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static IQueryable<Shot> GetShots(Animal animal)
+        public static IQueryable<AnimalShot> GetShots(Animal animal)
         {
-            throw new NotImplementedException();
+            var animalShot = (from a in db.AnimalShots where a.Equals(animal) select a);
+            return animalShot;
         }
 
         public static void UpdateShot(string v, Animal animal)
@@ -108,7 +109,7 @@ namespace HumaneSociety
         {
             throw new NotImplementedException();
         }
-
+        
         public static IQueryable<Adoption> GetUserAdoptionStatus(Client client)
         {
             var adoptionStatus = from status in db.Adoptions
