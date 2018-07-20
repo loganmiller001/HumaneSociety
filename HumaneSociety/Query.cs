@@ -38,6 +38,7 @@ namespace HumaneSociety
             foreach (AnimalShot animalShot in currentShots)
             {
                 animalShot.DateReceived = DateTime.Today;
+                db.SubmitChanges();
             }
         }
 
