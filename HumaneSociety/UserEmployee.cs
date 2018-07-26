@@ -26,7 +26,7 @@ namespace HumaneSociety
         }
         protected override void RunUserMenus()
         {
-            List<string> options = new List<string>() { "What would you like to do? (select number of choice)", "1. Add animal", "2. Remove Anmial", "3. Check Animal Status",  "4. Approve Adoption" };
+            List<string> options = new List<string>() { "What would you like to do? (select number of choice)", "1. Add animal", "2. Remove Anmial", "3. Check Animal Status",  "4. Approve Adoption", "5. csv" };
             UserInterface.DisplayUserOptions(options);
             string input = UserInterface.GetUserInput();
             RunUserInput(input);
@@ -49,6 +49,10 @@ namespace HumaneSociety
                     return;
                 case "4":
                     CheckAdoptions();
+                    RunUserMenus();
+                    return;
+                case "5":
+                    csvFiles();
                     RunUserMenus();
                     return;
                 default:
@@ -330,6 +334,11 @@ namespace HumaneSociety
                 employee.UserName = username;
                 UserInterface.DisplayUserOptions("Username successful");
             }
+        }
+
+        private void csvFiles()
+        {
+            Query.CSVReader();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualBasic.FileIO;
 
 namespace HumaneSociety
 {
@@ -117,12 +117,8 @@ namespace HumaneSociety
 
         public static void AddAnimal(Animal animal)
         {
-            Animal newAnimal = new Animal();
-    
-            db.Animals.InsertOnSubmit(newAnimal);
-
+            db.Animals.InsertOnSubmit(animal);
             db.SubmitChanges();
-
         }
 
         public static Employee EmployeeLogin(string userName, string password)
@@ -166,18 +162,30 @@ namespace HumaneSociety
             return adoptionStatus;
         }
 
-        public static object GetAnimalByID(int iD)
+        public static Animal GetAnimalByID(int iD)
         {
 
-            var animalId = from a in db.Animals
+            var animalId = (from a in db.Animals
                            where a.AnimalId == iD
-                           select a;
-            return animalId;
+                           select a).ToList();
+            return animalId[0];
         }
 
-        public static void Adopt(object animal, Client client)
+        public static void Adopt(Animal animal, Client client)
         {
-            throw new NotImplementedException();
+            Adoption adoption = new Adoption();
+            adoption.ClientId = client.ClientId;
+            adoption.AnimalId = animal.AnimalId;
+            adoption.AdoptionFee = 75;
+            adoption.PaymentCollected = true;
+            db.Adoptions.InsertOnSubmit(adoption);
+            if (adoption.ApprovalStatus == "Approved")
+            {
+                animal.AdoptionStatus = "Adopted";
+            }
+            else {
+                animal.AdoptionStatus = "Not Adopted";
+            }
         }
 
         public static void CrudCreateEmployee(Employee employee)
@@ -328,6 +336,42 @@ namespace HumaneSociety
             Client updateClient = myQuery.First();
             updateClient.LastName = (updateClient.LastName.Single().ToString());
             db.SubmitChanges();
+        }
+
+        public static void CSVReader()
+        {
+            string filePath = @"../../../animals.csv";
+
+            Console.WriteLine("Import animals from CSV");
+
+            UserInterface.DisplayUserOptions("Import animals from CSV");
+            bool fileExists = File.Exists(filePath);
+            if (fileExists)
+            {
+                Console.WriteLine("\nGood News! The file at the relative path: " + filePath + " exists!\nPress any key to import the CSV into your database!");
+                Console.ReadKey(true);
+                
+            }
+            else
+            {
+                Console.WriteLine("\nSorry. I could not find the file {0}.\nPress Any Key to quit the application, add the 'animals.csv' file and try again!", filePath);
+                Console.ReadKey(true);
+                Environment.Exit(-1);
+            }
+
+            using (TextFieldParser parser = new TextFieldParser("../../../animals.csv"))
+            {
+                parser.Delimiters = new string[] { "," };
+                while (true)
+                {
+                    string[] parts = parser.ReadFields();
+                    if (parts == null)
+                    {
+                        break;
+                    }
+                    Console.WriteLine("{0} field(s)", parts.Length);
+                }
+            }
         }
     }
 }
